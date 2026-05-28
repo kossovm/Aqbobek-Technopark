@@ -16,6 +16,7 @@ import {
   AlertTriangle, Hourglass, X, User, FileEdit, Eye, EyeOff, Tag, FileText,
 } from 'lucide-react'
 import PrintableLabel, { type LabelItem } from '@/components/admin/PrintableLabel'
+import ScheduleWidget from '@/components/schedule/ScheduleWidget'
 
 type Profile = {
   id: string
@@ -347,6 +348,22 @@ export default function ProfileClient() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* ─── Личное добавление в общее расписание ─── */}
+      <section className="bg-card border rounded-2xl p-5 space-y-4">
+        <h2 className="font-bold text-lg flex items-center gap-2">
+          <FileEdit className="w-5 h-5" /> Расписание
+        </h2>
+        <p className="text-sm text-muted-foreground">
+          Здесь можно добавлять свои мероприятия в общее расписание. На главной странице у всех — только просмотр.
+        </p>
+        <ScheduleWidget
+          userId={profile.id}
+          role={profile.role}
+          canManage
+          widgetTitle="Общее расписание"
+        />
       </section>
 
       <PrintableLabel

@@ -39,7 +39,7 @@ export default async function HomePage() {
 function Landing() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center px-4 hero-glow">
-      <div className="max-w-2xl w-full text-center space-y-10 py-16">
+      <div className="max-w-4xl w-full text-center space-y-10 py-16">
         {/* Logo + title */}
         <div className="flex flex-col items-center gap-5">
           <div className="relative">
@@ -94,6 +94,10 @@ function Landing() {
             title="Проекты"
             text="Командная работа, закреплённые ячейки хранения и возвраты"
           />
+        </div>
+
+        <div className="text-left mt-8">
+          <ScheduleWidget canManage={false} widgetTitle="Общее расписание" />
         </div>
       </div>
     </main>
@@ -246,7 +250,7 @@ async function Dashboard({
 
       {/* Schedule widget */}
       <section className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-150">
-        <ScheduleWidget userId={userId} role={role} />
+        <ScheduleWidget canManage={false} widgetTitle="Общее расписание" />
       </section>
 
       {/* My inventory */}

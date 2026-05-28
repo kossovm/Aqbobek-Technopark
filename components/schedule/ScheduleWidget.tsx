@@ -41,9 +41,13 @@ function useLocalTime() {
 export default function ScheduleWidget({
   userId,
   role,
+  canManage = false,
+  widgetTitle = 'Расписание на сегодня',
 }: {
-  userId: string
-  role: string
+  userId?: string
+  role?: string
+  canManage?: boolean
+  widgetTitle?: string
 }) {
   const { toast } = useToast()
   const { time, date } = useLocalTime()
@@ -139,21 +143,23 @@ export default function ScheduleWidget({
             </div>
             <div className="text-sm text-muted-foreground capitalize mt-0.5">{date}</div>
           </div>
-          <Button
-            size="sm"
-            variant="outline"
-            className="gap-2 rounded-full"
-            onClick={() => setAddOpen(true)}
-          >
-            <Plus className="w-4 h-4" /> Добавить в расписание
-          </Button>
+          {canManage && (
+            <Button
+              size="sm"
+              variant="outline"
+              className="gap-2 rounded-full"
+              onClick={() => setAddOpen(true)}
+            >
+              <Plus className="w-4 h-4" /> Добавить в расписание
+            </Button>
+          )}
         </div>
       </div>
 
       {/* Events list */}
       <div className="space-y-2">
         <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
-          <CalendarDays className="w-4 h-4" /> Расписание на сегодня — {DAY_NAMES[today]}
+          <CalendarDays className="w-4 h-4" /> {widgetTitle} — {DAY_NAMES[today]}
         </h3>
 
         {isLoading ? (
@@ -162,7 +168,7 @@ export default function ScheduleWidget({
           </div>
         ) : events.length === 0 ? (
           <div className="text-center py-6 text-sm text-muted-foreground border border-dashed rounded-xl">
-            Событий нет. Добавьте первое!
+            {canManage ? 'Событий нет. Добавьте первое!' : 'Сегодня событий нет.'}
           </div>
         ) : (
           <div className="space-y-2">
@@ -212,7 +218,7 @@ export default function ScheduleWidget({
                       )}
                     </div>
                   </div>
-                  {(role === 'admin' || role === 'teacher' || ev.author_id === userId) && (
+                  {canManage && (role === 'admin' || role === 'teacher' || ev.author_id === userId) && (
                     <button
                       type="button"
                       onClick={() => handleDelete(ev)}
@@ -230,7 +236,7 @@ export default function ScheduleWidget({
       </div>
 
       {/* Add dialog */}
-      <Dialog open={addOpen} onOpenChange={setAddOpen}>
+      <Dialog open={canManage && addOpen} onOpenChange={setAddOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
