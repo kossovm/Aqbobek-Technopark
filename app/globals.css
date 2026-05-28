@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ── Brand palette (light) ─────────────────────────────────────── */
+    --brand-blue:   39 103% 230;          /* #2766e7  hsl(227 76% 58%) */
+    --brand-purple: 276 100% 32%;         /* #6600a1 */
+    --brand-green:  145 63% 45%;          /* #2ebc62 */
+
+    --background:     0 0% 97%;
+    --foreground:     222 25% 10%;
+
+    --card:           0 0% 100%;
+    --card-foreground: 222 25% 10%;
+
+    --popover:        0 0% 100%;
+    --popover-foreground: 222 25% 10%;
+
+    /* Primary = brand blue */
+    --primary:        227 76% 58%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary = soft blue tint */
+    --secondary:      224 40% 93%;
+    --secondary-foreground: 227 76% 38%;
+
+    --muted:          220 20% 93%;
+    --muted-foreground: 220 10% 48%;
+
+    --accent:         276 100% 95%;
+    --accent-foreground: 276 100% 32%;
+
+    --destructive:    0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border:         220 20% 88%;
+    --input:          220 20% 88%;
+    --ring:           227 76% 58%;
+    --radius:         0.875rem;
+
+    /* Extra brand tokens */
+    --purple: 276 100% 32%;
+    --green:  145 63% 45%;
+  }
+
+  .dark {
+    --background:     226 30% 7%;
+    --foreground:     220 20% 92%;
+
+    --card:           226 25% 11%;
+    --card-foreground: 220 20% 92%;
+
+    --popover:        226 25% 11%;
+    --popover-foreground: 220 20% 92%;
+
+    --primary:        227 76% 63%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary:      225 22% 18%;
+    --secondary-foreground: 220 20% 78%;
+
+    --muted:          225 18% 16%;
+    --muted-foreground: 220 14% 55%;
+
+    --accent:         276 50% 22%;
+    --accent-foreground: 276 60% 82%;
+
+    --destructive:    0 62% 38%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border:         225 18% 20%;
+    --input:          225 18% 20%;
+    --ring:           227 76% 63%;
+
+    --purple: 276 60% 62%;
+    --green:  145 55% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  /* Scrollbar (webkit) */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-muted/40; }
+  ::-webkit-scrollbar-thumb { @apply bg-muted-foreground/30 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-muted-foreground/60; }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.25);
+  }
+}
+
+/* ── Logo spin animation ────────────────────────────────────────────────── */
+@keyframes logo-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.animate-logo-spin {
+  animation: logo-spin 1s linear infinite;
+}
+
+/* ── Shimmer / pulse skeleton ───────────────────────────────────────────── */
+@keyframes shimmer {
+  from { background-position: -400px 0; }
+  to   { background-position:  400px 0; }
+}
+
+/* ── Gradient glow background (hero) ───────────────────────────────────── */
+.hero-glow {
+  background: radial-gradient(ellipse 70% 50% at 50% -10%,
+    hsl(var(--primary) / 0.15) 0%,
+    transparent 70%);
+}
+
+/* ── Glass card ─────────────────────────────────────────────────────────── */
+.glass {
+  background: hsl(var(--card) / 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid hsl(var(--border) / 0.6);
+}
+
+/* ── Gradient text ──────────────────────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg,
+    hsl(var(--primary)) 0%,
+    hsl(var(--purple)) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

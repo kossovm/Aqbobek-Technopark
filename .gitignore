@@ -1,0 +1,56 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Next.js
+.next/
+out/
+build/
+dist/
+
+# Production / cache
+*.tsbuildinfo
+next-env.d.ts
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# Debug & logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Testing
+coverage/
+.nyc_output/
+
+# Vercel
+.vercel
+
+# Supabase (local CLI)
+.branches
+.temp
+supabase/.branches
+supabase/.temp
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE / editors
+.idea/
+*.swp
+*.swo
+*~
+
+# Cursor (local agent state — не коммитить)
+.cursor/
+
+# Optional: keep source logo in repo, ignore accidental copies in root if duplicated
+# (public/logo.png остаётся в git — нужен для приложения)
